@@ -32,11 +32,18 @@ const ContactForm: React.FC = () => {
   const [status, setStatus] = useState<'active' | 'inactive'>(initialContact?.status || 'active');
   const [phoneNumber, setPhoneNumber] = useState<string>(initialContact?.phoneNumber || '');
 
+  const isNameValid = /^[A-Za-z\s]+$/.test(name);
+  const isPhoneNumberValid = /^[0-9]{10}$/.test(phoneNumber);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!isNameValid || !isPhoneNumberValid) {
+      return; 
+    }
+
     const newContact: Contact = {
-      id: isEditing ? id! : String(Math.random()),
+      id: isEditing ? id! : String(Math.random()), 
       name,
       email,
       status,
@@ -63,8 +70,13 @@ const ContactForm: React.FC = () => {
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="mt-1 p-2 border rounded w-full focus:outline-none focus:ring focus:border-blue-300"
+            className={`mt-1 p-2 border rounded w-full focus:outline-none focus:ring ${
+              isNameValid ? 'focus:border-blue-300' : 'border-red-500 focus:border-red-500'
+            }`}
           />
+          {!isNameValid && (
+            <p className="text-red-500">Please enter a valid name</p>
+          )}
         </div>
         <div>
           <label className="block font-medium">Email:</label>
@@ -92,8 +104,13 @@ const ContactForm: React.FC = () => {
             type="text"
             value={phoneNumber}
             onChange={e => setPhoneNumber(e.target.value)}
-            className="mt-1 p-2 border rounded w-full focus:outline-none focus:ring focus:border-blue-300"
+            className={`mt-1 p-2 border rounded w-full focus:outline-none focus:ring ${
+              isPhoneNumberValid ? 'focus:border-blue-300' : 'border-red-500 focus:border-red-500'
+            }`}
           />
+          {!isPhoneNumberValid && (
+            <p className="text-red-500">Please enter valid ph-No</p>
+          )}
         </div>
 
         {/* Add other input fields */}
