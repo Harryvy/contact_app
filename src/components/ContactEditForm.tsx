@@ -31,6 +31,9 @@ const ContactEditForm: React.FC = () => {
   const [status, setStatus] = useState<'active' | 'inactive'>(contactToEdit?.status || 'active');
   const [phoneNumber, setPhoneNumber] = useState<string>(contactToEdit?.phoneNumber || '');
 
+  const isNameValid = /^[A-Za-z\s]+$/.test(name);
+  const isPhoneNumberValid = /^[0-9]{10}$/.test(phoneNumber);
+
   useEffect(() => {
     if (contactToEdit) {
       setName(contactToEdit.name);
@@ -42,6 +45,10 @@ const ContactEditForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isNameValid || !isPhoneNumberValid) {
+      return; 
+    }
 
     if (contactToEdit) {
       const updatedContact: Contact = {
@@ -73,8 +80,13 @@ const ContactEditForm: React.FC = () => {
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
+              isNameValid ? '' : 'border-red-500'
+            }`}
           />
+          {!isNameValid && (
+            <p className="text-red-500">Please enter a valid name</p>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Email:</label>
@@ -102,8 +114,13 @@ const ContactEditForm: React.FC = () => {
             type="text"
             value={phoneNumber}
             onChange={e => setPhoneNumber(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
+              isPhoneNumberValid ? '' : 'border-red-500'
+            }`}
           />
+          {!isPhoneNumberValid && (
+            <p className="text-red-500">Please enter valid ph-No</p>
+          )}
         </div>
 
         {/* Update other input fields */}
