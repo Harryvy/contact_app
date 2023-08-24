@@ -51,7 +51,7 @@ const ChartsAndMaps: React.FC = () => {
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {countriesData?.map((country: any) => {
             const customIcon = L.icon({
-              iconUrl: country.countryInfo.flag, // Assuming icon URL is available in country data
+              iconUrl: country.countryInfo.flag, 
               iconSize: [25, 25],
               iconAnchor: [12.5, 25],
             });

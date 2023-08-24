@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'; // Import the plus icon
+import { faPlus } from '@fortawesome/free-solid-svg-icons'; 
 import ContactList from '../components/ContactList';
 import ContactDetails from '../components/ContactDetails';
 import ContactForm from '../components/ContactForm';

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
 type RouteParams = {
-  id: string; // Make sure the parameter name matches the route configuration
+  id: string; 
 }
 
 const ContactDetails: React.FC = () => {

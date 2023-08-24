@@ -36,7 +36,7 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
 
     const newContact: Contact = {
-      id: isEditing ? id! : String(Math.random()), // Replace with a proper ID generation method
+      id: isEditing ? id! : String(Math.random()),
       name,
       email,
       status,

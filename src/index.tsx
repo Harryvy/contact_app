@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import './index.css'; // Add Tailwind CSS classes here
+import './index.css'; 
 import { Provider } from 'react-redux'; // Import the Provider
 import store from './store/store'; // Import your Redux store
 const queryClient = new QueryClient();
