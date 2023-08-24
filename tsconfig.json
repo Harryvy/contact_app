@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*", "types/*"] // Adjust this according to your project structure
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -22,5 +26,5 @@
   },
   "include": [
     "src"
-  ]
+, "tailwind.config.js"  ]
 }
